@@ -1,0 +1,18 @@
+#include <stdio.h>
+int main(void)
+{
+double x;
+double y;
+printf("Введіть x: ");
+scanf("%lf", &x);
+if ((x >= -49 && x < -10) || (x > 0 && x <= 10)) {
+y = 10 * x * x * x + 7 * x / 5 + 2;
+printf("y(%g) = %g\n", x, y);
+} else if (x > 20) {
+y = -x + 9;
+printf("y(%g) = %g\n", x, y);
+} else {
+printf("Функція не визначена для x = %g\n", x);
+}
+return 0;
+}
