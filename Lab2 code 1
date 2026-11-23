@@ -1,0 +1,51 @@
+#include <stdio.h> 
+ 
+int main(void) { 
+    int n; 
+    const double x = 0.5; 
+    double sum = 0.0; 
+    unsigned long long ops = 0; 
+    unsigned long long std_calls = 0; 
+ 
+    printf("Введіть n: "); 
+    std_calls++; 
+    if (scanf("%d", &n) != 1 || n < 0) { 
+        printf("Помилка вводу! Передайте натуральне число n у поле Input (Stdin).\n"); 
+        std_calls++; 
+        return 1; 
+    } 
+ 
+    for (int i = 0; i <= n; i++) { 
+        ops += 2;  
+        int exp = 2 * i + 1; 
+        ops += 2;  
+        double power = 1.0; 
+        ops++; 
+        for (int j = 0; j < exp; j++) { 
+            power *= x; 
+            ops += 3;  
+        } 
+        ops++;  
+ 
+        double fact = 1.0; 
+        ops++; 
+        for (int k = 1; k <= exp; k++) { 
+            fact *= k; 
+            ops += 3;  
+        } 
+        ops++;  
+ 
+        double sign = (i % 2 == 0) ? 1.0 : -1.0; 
+        ops += 3;  
+ 
+        sum += sign * power / fact; 
+        ops += 3;  
+    } 
+    ops++;  
+ 
+    printf("Результат: %.7f\n", sum); 
+    printf("Кількість операцій: %llu\n", ops); 
+    printf("Кількість викликів стандартних функцій: %llu\n", std_calls); 
+    std_calls += 3; 
+    return 0; 
+} 
